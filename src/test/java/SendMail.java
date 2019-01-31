@@ -42,7 +42,7 @@ public class SendMail extends tryToSendMail{
 
         template.render(model);// gives the full json response
 
-        String postApi = "http://petstore.swagger.io/v2/store/inventory";
+        String postApi = " https://petstore.swagger.io/v2/store/order";
 
 
 
@@ -50,8 +50,10 @@ public class SendMail extends tryToSendMail{
                 .header("accept", "application/xml")
                 .header("Content-Type", "application/json")
                 .header("Content-Type", "application/json")
-                .body(template.render(model))
+                .body("{ \"id\": 5, \"petId\":6, \"quantity\": 4, \"shipDate\": \"2019-01-31T08:04:56.297Z\", \"status\": \"placed\", \"complete\": false}")
                 .asString();
+        System.out.println(jsonResponse.getStatus() + " " +jsonResponse.getStatusText()+ " " +jsonResponse.getBody() );
+
     }
 
 
